@@ -1,0 +1,149 @@
+{
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "48979163-e4a1-4657-95e0-b0e686a22d36",
+      "name": "Telegram Trigger",
+      "webhookId": "f9d4b320-007a-4b2f-953f-b870a6ab6077",
+      "credentials": {
+        "telegramApi": {
+          "id": "weuaRgaXnJj9JeRZ",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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  "
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"nvidia/nemotron-3-nano-30b-a3b:free\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{{ $json.message.text }}\"\n    }\n  ]\n}\n ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        224,
+        0
+      ],
+      "id": "78ffa2f4-d351-44c7-bb14-76e700de69e4",
+      "name": "HTTP Request",
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $node[\"Telegram Trigger\"].json.message.chat.id }}",
+        "text": "={{ $node[\"HTTP Request\"].json.choices[0].message.content }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        432,
+        0
+      ],
+      "id": "09e525e9-2e66-4474-a69c-744a159d40b9",
+      "name": "Send a text message",
+      "webhookId": "c48435e5-fc77-4fea-8e97-4799b457f392",
+      "credentials": {
+        "telegramApi": {
+          "id": "weuaRgaXnJj9JeRZ",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 993383901,
+          "message": {
+            "message_id": 2,
+            "from": {
+              "id": 2065835689,
+              "is_bot": false,
+              "first_name": "Niru",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 2065835689,
+              "first_name": "Niru",
+              "type": "private"
+            },
+            "date": 1772436366,
+            "text": "Hello"
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "07aeef13-a41d-4cf9-a5f6-7a4c97efc58e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "73dddcf473bc683e6a9553833d524b8d35f90b49c794116b859585a2dbc05d9a"
+  },
+  "id": "XcEUigzhBLhjeB08",
+  "tags": []
+}
