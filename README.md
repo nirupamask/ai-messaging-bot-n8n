@@ -18,5 +18,11 @@ This project demonstrates an AI-powered chatbot built using workflow automation 
 ## Architecture
 User → Messaging Platform → Webhook → n8n Workflow → AI Model → Response
 
+## How to Run
+1. Import the workflow JSON file into n8n
+2. Configure Twilio Sandbox or Telegram Bot API
+3. Activate the workflow
+4. Send a message to the bot
+
 ![workflow](workflow-architecture.png.png)
 
