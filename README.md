@@ -18,5 +18,5 @@ This project demonstrates an AI-powered chatbot built using workflow automation 
 ## Architecture
 User → Messaging Platform → Webhook → n8n Workflow → AI Model → Response
 
-![workflow](workflow-architecture.png)
+![workflow](workflow-architecture.png.png)
 
