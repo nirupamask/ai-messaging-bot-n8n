@@ -24,7 +24,7 @@ User → Telegram → Telegram Bot API → HTTP → n8n Workflow → Response �
  
 ## How It Works
 1. User sends a message to the Telegram bot
-2. Telegram triggers a webhook
+2. Telegram triggers a HTTP
 3. The HTTP starts the n8n workflow
 4. The workflow processes the message
 5. A response is sent back to the user through the Telegram Bot API
