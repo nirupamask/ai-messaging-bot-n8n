@@ -7,7 +7,7 @@ This project demonstrates a Telegram chatbot built using n8n workflow automation
 - Real-time message processing
 - Workflow automation using n8n
 - API-based response handling
-- Webhook-triggered workflow execution
+- HTTP-triggered workflow execution
  
 ## Tech Stack
 - n8n (Workflow Automation)
