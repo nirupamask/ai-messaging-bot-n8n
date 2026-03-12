@@ -16,7 +16,7 @@ This project demonstrates a Telegram chatbot built using n8n workflow automation
 - JSON workflows
  
 ## Architecture
-User → Telegram → Telegram Bot API → Webhook → n8n Workflow → Response → Telegram
+User → Telegram → Telegram Bot API → HTTP → n8n Workflow → Response → Telegram
  
 ## Workflow Screenshot
  
@@ -25,7 +25,7 @@ User → Telegram → Telegram Bot API → Webhook → n8n Workflow → Response
 ## How It Works
 1. User sends a message to the Telegram bot
 2. Telegram triggers a webhook
-3. The webhook starts the n8n workflow
+3. The HTTP starts the n8n workflow
 4. The workflow processes the message
 5. A response is sent back to the user through the Telegram Bot API
  
